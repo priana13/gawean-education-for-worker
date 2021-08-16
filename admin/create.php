@@ -26,7 +26,7 @@ $kategori = query_ambil("SELECT * FROM kategori");
                     </div>
                     <div class="card-body">
 
-                    <form class="" action="add.php" method="post">
+                    <form class="" action="add.php" method="post" enctype="multipart/form-data">
 
                       <div class="form-group">
                         <label>Judul</label>
@@ -51,6 +51,11 @@ $kategori = query_ambil("SELECT * FROM kategori");
 
                         </optgroup>
                       </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Gambar Utama</label>
+                      <input type="file" name="gambar" class="form-control" >
                     </div>
 
                     <div class="form-group">

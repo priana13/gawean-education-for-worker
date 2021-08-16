@@ -29,3 +29,23 @@ function query($sql){
   mysqli_close($conn);
 
 }
+
+
+function upload(){
+
+  $namaFile= $_FILES['gambar']['name'] ;
+  $ukuranFIle = $_FILES['gambar']['size'] ;
+  $error = $_FILES['gambar']['error'] ;
+  $tmpName = $_FILES['gambar']['tmp_name'] ;
+
+  // cek apakah tidak ada gambar yang di upload
+
+  if($error === 4){
+     echo "<script>
+        alert('pilih gambar dulu!');
+     </script>
+     ";
+     return false;
+  }
+
+}

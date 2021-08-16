@@ -1,8 +1,13 @@
 <?php
 $servername = "localhost";
-$username = "gawean";
-$password = "Gawean@117";
-$database = "gawean_app";
+// production
+// $username = "gawean";
+// $password = "Gawean@117";
+// $database = "gawean_app";
+// localhost
+$username = "root";
+$password = "";
+$database = "gawean";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password,$database);

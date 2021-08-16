@@ -1,4 +1,13 @@
-<?php   include 'header.php';
+<?php
+
+session_start();
+
+if(!isset($_SESSION['login'])){
+  header('Location: ../login.php');
+  exit;
+}
+
+include 'header.php';
 
 include '../functions.php';
 

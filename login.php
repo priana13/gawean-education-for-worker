@@ -1,3 +1,50 @@
+<?php 
+    session_start();
+
+    if(isset($_SESSION['login'])){
+        header('Location: ../login.php');
+        exit;
+      }
+      
+
+    require 'functions.php';
+
+    // echo  password_hash("123456", PASSWORD_DEFAULT);
+    // var_dump($_POST);
+    // die();
+
+
+    if(isset($_POST['login'])){
+
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+
+        $result = mysqli_query($conn, "select * from users where username = '$username'");
+
+        if(mysqli_num_rows($result)===1){
+            // cek password
+
+            $row = mysqli_fetch_assoc($result);
+
+            if( password_verify($password, $row['password'])){
+
+                // set session
+                $_SESSION["login"] = true;
+
+                header("Location: user/home.php");
+
+                exit;
+            }
+        }
+
+        $error = true;
+    }
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +67,7 @@
                 <img src="./assets/img/user.png" class="rounded-circle float-left d-block rounded" alt="..." width="270px" height="270px"> 
             </div>
             <div class="col my-5">
-                <form method="POST" action="check-login.php">
+                <form method="POST" action="">
                     <div class="form-group">
                         <label for="username">Nama Pengguna</label>
                         <input type="text" class="form-control" id="username" name="username">
@@ -29,6 +76,11 @@
                         <label for="Password">Kata Sandi</label>
                         <input type="password" class="form-control" id="password" name="password">
                     </div>
+                    <?php if(isset($error)) : ?>
+                        <div class="alert alert-danger" role="alert">Username/Password salah</div>
+                    <?php endif; ?>
+
+
                     <p class="text-left"> Belum punya akun? Silahkan buat akun Anda<a href="./sign-in.php"> disini</a></p>
                     <button type="submit" class="btn btn-lg btn-primary" name="login" value="masuk">Masuk</button>
                 </form>

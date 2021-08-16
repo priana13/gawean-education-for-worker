@@ -1,3 +1,17 @@
+<?php 
+
+session_start();
+
+if(!isset($_SESSION['login'])){
+  header('Location: ../login.php');
+  exit;
+}
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="in-ID">
 
@@ -52,6 +66,14 @@
           <li><a href="#services">Materi</a></li>
           <li><a href="./news.php" target="blank">Kabar Gawean</a></li>
           <li><a href="#team">Saran & Masukan</a></li>
+        <?php
+          if(isset($_SESSION['login'])){ ?>
+
+              <li><a href="../logout.php">Logout</a></li>
+        
+        <?php  }   ?>
+       
+         
 
         </ul>
       </nav>

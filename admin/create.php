@@ -1,4 +1,12 @@
-<?php   include 'header.php'; ?>
+<?php
+
+include 'header.php';
+include '../functions.php';
+
+$kategori = query_ambil("SELECT * FROM kategori");
+
+
+?>
 
 
           <div class="section-header">
@@ -18,7 +26,7 @@
                     </div>
                     <div class="card-body">
 
-                    <form class="" action="add.php" method="post">
+                    <form class="" action="add.php" method="post" enctype="multipart/form-data">
 
                       <div class="form-group">
                         <label>Judul</label>
@@ -35,12 +43,19 @@
                       <div class="form-group">
                         <label>Kategory</label>
                         <select class="form-control" name="kategori">
-                          <option value="">Facebook Ads</option>
-                          <option value="">Google Ads</option>
-                          <option value="">Whatsapp Marketing</option>
+                          <?php foreach($kategori as $row) { ?>
+
+                          <option value="<?= $row['id'] ?>"><?= $row['kategori'] ?></option>
+
+                          <?php } ?>
 
                         </optgroup>
                       </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Gambar Utama</label>
+                      <input type="file" name="gambar" class="form-control" >
                     </div>
 
                     <div class="form-group">

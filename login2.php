@@ -1,4 +1,11 @@
 <?php 
+    session_start();
+
+    if(isset($_SESSION['login'])){
+        header('Location: ../login2.php');
+        exit;
+      }
+      
 
     require 'functions.php';
 
@@ -20,6 +27,9 @@
             $row = mysqli_fetch_assoc($result);
 
             if( password_verify($password, $row['password'])){
+
+                // set session
+                $_SESSION["login"] = true;
 
                 header("Location: user/home.php");
 
